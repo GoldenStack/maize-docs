@@ -1,4 +1,6 @@
-# (...)
+name: Deploy Docusaurus to GitHub Pages
+on: [push]
+
 jobs:
   deploy:
     environment:
