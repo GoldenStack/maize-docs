@@ -4,32 +4,32 @@ import styles from './styles.module.css';
 
 const FeatureList = [
   {
-    title: 'Easy to Use',
+    title: 'Portable',
     Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        Designed to compile effortlessly to simple lambda calculus systems,
+        you can write an interpreter for compiled Maize code in a day.
       </>
     ),
   },
   {
-    title: 'Focus on What Matters',
+    title: 'Functional',
     Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        Maize benefits from the simplicity and expressivity of key functional
+        languages like Haskell, Agda, and Idris.
       </>
     ),
   },
   {
-    title: 'Powered by React',
+    title: 'Simple',
     Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        With an extremely simple core language, most complex features from other
+        languages are represented by a few operators in Maize.
       </>
     ),
   },

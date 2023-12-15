@@ -9,7 +9,7 @@ import {themes as prismThemes} from 'prism-react-renderer';
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Maize',
-  tagline: 'Simple programming language',
+  tagline: 'A functional and portable programming language',
   favicon: 'img/maize-emoji.ico',
 
   // Set the production url of your site here
@@ -66,7 +66,7 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       // Replace with your project's social card
-      image: 'img/docusaurus-social-card.jpg',
+      image: 'img/maize-emoji.png',
       navbar: {
         title: 'Maize Documentation',
         logo: {
