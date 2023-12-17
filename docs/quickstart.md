@@ -15,8 +15,8 @@ main = "Hello, world!"
 
 -- You can also do this:
 main = print "Hello, world!"
--- But it's heavily discouraged, because it makes thinking of
--- the program as a single function much more complicated.
+-- But it's heavily discouraged, because it complicates
+-- thinking of the program as a single function.
 
 -- There are integers and floats
 x = 3
