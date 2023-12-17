@@ -3,7 +3,7 @@ sidebar_position: 3
 description: 'Maize supports lists.'
 ---
 
-### Lists
+# Lists
 
 A list is a collection of items.
 
