@@ -25,3 +25,41 @@ f x = x * 2
 result = f 4
 ```
 
+### Type Arithmetic
+
+Maize supports a few standard types in its standard library.
+None of these actually exist in the language by default; see above.
+
+
+You can create types:
+```haskell
+X = type X
+```
+
+You can create sum types (unions):
+```haskell
+Z = X | Y
+```
+
+You can create product types (tuples):
+```haskell
+Z = X & Y
+```
+
+You can emulate generics:
+```haskell
+Map key value = type Map where
+    empty :: Self
+
+    get :: key -> Self -> value
+    put :: key -> value -> Self -> Self
+
+    keys :: Self -> List key
+```
+
+Some more examples:
+```haskell
+IntKeyedMap value = Map Int value
+
+IntValuedMap key = Map key Int
+```

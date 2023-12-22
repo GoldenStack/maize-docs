@@ -37,3 +37,7 @@ fizzBuzz i
     where
         m value = i % value == 0
 ```
+
+```haskell title="Closest point in a list to another point"
+closest point = minBy $ comparing (distance point)
+```
