@@ -32,6 +32,11 @@ later and, given a format as simple as the lambda calculus, it will still
 function. In many programming languages, this is an impossible idea. In Maize,
 this is simply how programming works.
 
+Maize has relatively little abstraction over the lambda calculus; if a computer
+was only able to evaluate the lambda calculus, Maize would be lower-level than
+common languages like JavaScript or C#. Basically, it's only high level because
+it targets a different system.
+
 ### Why *not* Maize?
 Maize is not a general purpose language. Maize is not a multi-paradigm language.
 
