@@ -17,13 +17,13 @@ total = sum $ filter even $ map (^ 2) (0..100)
 ```
 
 ```haskell title="2d point type"
-Point = data Point of
+Point = data Point where
     x :: Int
     y :: Int
 ```
 
 ```haskell title="Map creation"
-map = Map of
+map = Map where
     "name" = "Maize"
     "iq" = -26
 ```
