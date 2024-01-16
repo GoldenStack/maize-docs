@@ -76,3 +76,42 @@ The `png` function could be provided during compile time, or it could be provide
 
 This keeps your file as a function and allows you to easily switch runtime vs compile time *without adding any new features*. This texture loading idea just emerges from good, existing features, and can make your code much more refactorable.
 
+### Function Syntax
+Functions in Maize defined similarly to those in Haskell.
+```Haskell
+double :: Int -> Int
+double num = num + num
+```
+
+Here, you have:
+- the name, `double`
+- the parameters, `num`
+- the body: `num + num`
+
+The left side can have operators applied to it, to make some code easier to
+write. For example:
+
+```Haskell
+add :: (Int, Int) -> Int
+add (a, b) = a + b
+```
+This is a function that adds together the two elements of a tuple. The
+parentheses are unnecessary, but they improve readability.
+
+When parsed and prepared for execution, this turns into a function that maps a
+given parameter into two names, `a` and `b`.
+
+This can be leveraged to include named arguments:
+
+```Haskell
+add {first second} = first + second
+
+seven = add where
+    first = 5
+    second = 2
+```
+
+This uses the multiline `where` operator to implement named arguments, without
+actually having to specifically add a feature for it. Because this is a
+compile-time construct, it can be eagerly evaluated, thus removing any potential
+performance hit from this behaviour.
