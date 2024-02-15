@@ -13,10 +13,10 @@ const config = {
   favicon: 'img/maize-emoji.ico',
 
   // Set the production url of your site here
-  url: 'https://GoldenStack.github.io',
+  url: 'https://goldenstack.net',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/maize-docs/',
+  baseUrl: '/maize',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
