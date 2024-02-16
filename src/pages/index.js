@@ -32,7 +32,7 @@ export default function Home() {
   return (
     <Layout
       title={`Maize Documentation`}
-      description="Maize, a functional and portable programming language.">
+      description="Maize, a declarative and descriptive programming language.">
       <HomepageHeader />
       <main>
         <HomepageFeatures />
