@@ -1,127 +1,190 @@
 ---
 sidebar_position: 2
+description: 'Quickstart (learnxinyminutes-style)'
 ---
 
 # Quickstart
 
 ```haskell
--- Comments in Maize start with two dashes.
 
--- You declare your file
+-- Basic file declaration
 module Main where
 
 -- Hello, world!
 main = "Hello, world!"
 
--- You can also do this:
-main = print "Hello, world!"
--- But it's heavily discouraged, because it complicates
--- thinking of the program as a single function.
+-- Comments in Maize start with two dashes, like in Haskell.
 
--- There are integers and floats
-x = 3
-y = 2.1
+-- Place a context on the left and an expression on the right
+-- to define a function over a type.
 
--- You declare types with "name :: type" like so:
-z :: Float
-z = 3.5
+-- Constant declaration with constant expression.
+bool = True
 
--- Math is what you'd expect
-five = 3 + 2
-six = 3 * 2
-one = 3 - 2
-threeHalves = 3 / 2
+-- Constant declaration with type annotation
+one :: Nat -- natural number
+one = 1
 
--- Except ^ (caret) is for exponentiation, not XOR like other languages.
+six :: Float
+six = 4 * 1.5
+
+-- Except ^ (caret) is for exponentiation, not bitwise XOR like other languages.
 eight = 2^3
 
+-- Constant declaration with evaluated (but still constant) expression.
+seven = 3 - 4
 
--- Booleans are just constants.
-isFalse = True && False
-isTrue = False || True
-
-isFalse = not True
-isTrue = 1 == 2
-
-
--- String work like normal Haskell:
+-- Use ++ for string concatenation. The "String" type is equal to "List Char".
+helloWorld :: List Char
 helloWorld = "Hello," ++ " " ++ "World!"
--- A string is just a list of characters, so:
-name :: List Char
-name = ['M', 'a', 'i', 'z', 'e'] -- Lists can be created with the [] operator
 
--- A list over type M is an ordered collection of M.
-numbers :: List Int
-numbers = [1, 2, 3, 4, 5]
+-- Declaration with parameter "x" and an evaluated expression (x * 2).
+-- The first word (e.g. "double") is the name and the others are parameters.
+double x = x * 2
 
--- This is just syntax sugar for list concatenation:
-numbers = 1 : 2 : 3 : 4 : 5 : [] -- [] is the empty list constant
+-- Declaration with constant parameter "True" (because it is in scope),
+-- two other parameters, and an expression.
+if True t f = t
+-- The type of "if" here is "Bool -> a -> a -> a".
+-- With parentheses, it's "Bool -> (a -> (a -> a))".
+-- This means that when you provide a boolean and two values, it returns a
+-- resulting value - the same thing as a "normal" pure `if` statement.
+-- This is because functions are curried: multiple-parameter functions are
+-- simply higher-order functions.
 
--- You can also use the .. operator - the range operator
-numbers = 1..5
+-- You can different function signatures with constant parameters.
+double 0 = 0
+double n = n * 2
 
--- Use the !! operator to access an element of a list.
-four = numbers !! 3 -- Maize uses zero-based indexing
+-- Types are first class (taken from Idris documentation):
+isSingleton :: Bool -> Type
+isSingleton True = Nat
+isSingleton False = List Nat
 
--- Maize, like Haskell, supports infinite lists:
-ints :: List Int
-ints = 1..
+-- Operators work a similar way. Even if they're used as infix you define
+. a b c = a $ b c
 
--- Using Maize's dependent typing, you can have constrained lists:
-positiveInts :: List Int where (>0)
-positiveInts = 1.. -- Works!
+-- You can even mix constant parameters and operators with constant values.
+-- They are used in order, so this example handles 0^0 correctly.
+n^0 = 1
+0^n = 0
+a^b = a * a^(b-1)
 
-compileError :: List Int where (>0)
-compileError = [0, 1] -- Type error: Expected 'Int where (>0)'; found 'Int'
+-- You can implement these by destructuring, too.
+-- Since integers are represented with Peano axioms, you can destructure a
+-- variable to calculate its predecessor.
+prev (Succ n) = n
+-- The function above is actually a partial function: it only applies to the
+-- Succ (successor) type, and not the Zero type.
+-- This means that it's always invalid to call "prev 0".
+-- To make the function complete over the Nat (natural number) type,
+-- just define it for 0.
+prev Zero = Zero
+
+-- This is a more complicated example. It's an example of codata.
+-- This idea works on results of function calls regardless of existing types.
+-- This means that this code doesn't even need to rely on any predefined types.
+length (pos x y z) = (x^2 + y^2 + z^2)^0.5
+-- It defines the length function over the result of a "pos" function called on
+-- three parameters, requiring that (a ^ Int) is defined, where x, y, and z are
+-- of type "a".
+
+-- Function signatures work with implicit context. If I define a function with
+-- unknown functions called on a parameter, context will be required to actually
+-- evaluate the function. For example:
+example a = apply a
+-- This requires that there exists "apply :: a -> b".
+-- If this is called without the function existing,
+-- the caller will inherit the implicit context.
+example2 a = example a
+
+-- Error: `apply :: a -> b` not defined (originally referenced in `example`)
+b = example2 a
+
+-- You can use implicit context with functions like sort.
+list = sort [1:2:3] -- List of [1, 2, 3]
+ where
+    compare = Order.invert . Nat.compare
+-- This works because sort requires the function `compare :: a -> a -> Order`
+-- Which is Nat -> Nat -> Order in this case, which we define here.
+
+-- This works for more complicated scenarios.
+-- Overriding functions (not meant in the object-oriented sense) in sum is bad
+-- practice here; you should `foldl 1 (*) [1:2:3]`. This is just an example.
+six = sum [1:2:3]
+ where
+    fold = (*)
+    default = 1
+
+-- On the topic of lists, you use the cons (constructor) operator to create
+-- lists. The square brackets are unnecessary but they maintain conformity with
+-- other popular languages.
+
+-- You can also create a list by prepending items to a list, like so.
+-- Empty square brackets [] indicate an empty list.
+sameList :: List Nat
+sameList = 1 : 2 : 3 : []
+
+-- You can use !! to get an item from a list.
+two = sameList !! 1
+
+-- The `!!` operator could cause a runtime error, so you can just use `!` instead.
+-- This will return `Just` the value, or `Nothing` if the index is invalid
+justTwo = list ! 1 -- Just 2
+nothing = list ! 3 -- Nothing
+
+-- You can use the "where" syntax in a more codata-centered manner, too.
+-- This returns a point, defining the x and y properties for it.
+pos x y = p
+ where
+    p :: Pos
+    x p = x
+    y p = y
+
+-- You can partially apply functions.
+-- This exists for every function.
+add5 = (+) 5 -- Providing only one parameter; typed (Int -> Int)
+eight = add5 3
+
+-- You can define lambda functions like in Haskell.
+double = \x -> x * 2
+-- This is just syntax sugar for function declaration.
+double x = x * 2
 
 
--- Tuples can be created with the , operator:
-intBool :: Int, Bool
--- In most cases, you should add parentheses around the tuple
--- to help indicate that it is, in fact, a tuple.
-intBool = (3, False) -- But "3, false" without parentheses still works
+-- Types
 
-three = fst intBool -- First element of intBool
-false = snd intBool -- Second element of intBool
+-- As lambda calculus is an intended compile target, Maize does not have any
+-- "normal" primitives like integers and floats.
+-- These "primitives" still exist, but they're defined in the standard library
+-- with optimizations that are part of implementation detail.
+
+-- Normal type creation
+X = type X
+
+-- Sum types (unions)
+Z = type X | type Y
+
+-- Product types (tuples)
+Z = type X & type Y
+
+-- "Generics" (endofunctors over types)
+Map key value = type Map of
+    empty :: Self
+
+    get :: key -> Self -> value
+    put :: key -> value -> Self -> Self
+
+    keys :: Self -> List key
+
+-- Some more examples
+IntKeyedMap = Map Int
+
+IntValuedMap = flip Map $ Int
 
 
 -- If you don't know what to put in a function, you can add ???
 unknown = ???
--- The compiler will tell you what type it needs to be!
+-- The compiler will tell you what type is expected.
 
-
--- Calling functions, known as 'function application', is done with
--- the function name on the left, and arguments on the right.
--- Functions do not use any parentheses.
--- There is no difference between a value and a zero-argument function.
-
-add a b = a + b
-seventeen = add 5 12
-
--- The type of "add" here is actually "Int -> Int -> Int".
--- This is equivalent to "Int -> (Int -> Int)".
--- If you look at the type, you can see that, when you call it with two integers
--- consecutively, you get an integer.
--- This is because Maizes uses currying; all multiple-parameter functions are
--- simply functions that return other functions.
-
--- This means you can also partially apply all functions:
-plusFive :: Int -> Int
-plusFive = add 5
--- plusFive ends up as a function similar to this:
-plusFive = \b -> 5 + b
--- This is because we only gave one argument to the add function, and now to
--- return a value it needs a second argument.
-
-
--- Maize uses the idea of mixfix operators from Agda.
--- If expressions are simply a function:
-if_then_else_ :: Bool -> a -> a -> a
--- The underscores indicate that arguments would go there.
--- For example:
-
-red = if True then "red" else "blue"
--- Similar to partial application, you don't actually have to follow the rules
--- of mixfix operators; you can call it like a normal function.
-blue = if_then_else_ True "red" "blue"
 ```
