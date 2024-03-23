@@ -89,6 +89,12 @@ length (pos x y z) = (x^2 + y^2 + z^2)^0.5
 -- three parameters, requiring that (a ^ Int) is defined, where x, y, and z are
 -- of type "a".
 
+-- You can also implement tuples with codata:
+fst (a, b) = a
+snd (a, b) = b
+-- This defines `fst` (first) of (a, b) to be `a`, the first element.
+-- And it defines `snd` (second) of (a, b) to be `b`, the second element.
+
 -- Function signatures work with implicit context. If I define a function with
 -- unknown functions called on a parameter, context will be required to actually
 -- evaluate the function. For example:
