@@ -175,7 +175,8 @@ Z = type X | type Y
 Z = type X & type Y
 
 -- "Generics" (endofunctors over types)
-Map key value = type Map of
+Map key value = type Map
+ where
     empty :: Self
 
     get :: key -> Self -> value
