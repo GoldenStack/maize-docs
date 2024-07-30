@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Astro description" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+		<title>Maize Programming Language</title>
+	</head>
+	<body>
+		<div id="navbar">
+			<a id="navbar-brand" href="/">
+				<img id="navbar-icon" src="/assets/maize.png">
+				<span id="navbar-title" class="navbar-link">Maize</span>
+			</a>
+
+			<div id="navbar-links">
+				<a class="navbar-link" href="/learn">learn</a>
+				<a class="navbar-link" href="/philosophy">philosophy</a>
+				<a class="navbar-link" href="/install">install</a>
+			</div>
+		</div>
+		<h1>astro >:))))</h1>
+	</body>
+</html>
+<style is:global>
+	@font-face {
+		font-family: "Atkinson Hyperlegible";
+		src: url("/assets/Atkinson-Hyperlegible-Regular-102a.woff2");
+	}
+
+    html {
+        font-family: 'Atkinson Hyperlegible', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        font-size: 20px;
+        line-height: 24px;
+		background-color: aliceblue;
+    }
+
+	body {
+		max-width: 768px;
+		min-height: 100vh;
+		margin: 0 auto;
+		padding: 12px 6px;
+	}
+
+	#navbar {
+		box-sizing: border-box;
+		width: 100%;
+
+		margin: 0 auto 0 auto;
+
+		display: flex;
+		justify-content: space-between;
+		padding-right: 9px;
+	}
+
+	#navbar a {
+		box-sizing: border-box;
+		display: inline-block;
+		padding: 12px 16px;
+		margin: 0 2px;
+	}
+
+	#navbar-links {
+		height: 100%;
+		vertical-align: middle;
+
+		margin: auto 0;
+	}
+
+	#navbar-brand {
+		text-decoration: none;
+	}
+
+	.navbar-link {
+		text-decoration: none;
+		color: rgb(25, 25, 25);
+	}
+
+	.navbar-link:hover {
+		text-decoration: underline;
+		color: black;
+	}
+
+	#navbar-icon {
+		vertical-align: middle;
+
+		height: 2rem;
+		width: 2rem;
+	}
+
+</style>
