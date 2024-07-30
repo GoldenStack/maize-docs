@@ -1,0 +1,60 @@
+<div id="navbar">
+    <a id="navbar-brand" href="/">
+        <img id="navbar-icon" alt="The Maize logo: an ear of corn" src="/assets/maize.png">
+        <span id="navbar-title" class="navbar-link">Maize</span>
+    </a>
+
+    <div id="navbar-links">
+        <a class="navbar-link" href="/learn">learn</a>
+        <a class="navbar-link" href="/philosophy">philosophy</a>
+        <a class="navbar-link" href="/install">install</a>
+    </div>
+</div>
+
+<style>
+    #navbar {
+		box-sizing: border-box;
+		width: 100%;
+
+		margin: 0 auto 0 auto;
+
+		display: flex;
+		justify-content: space-between;
+		padding-right: 9px;
+	}
+
+	#navbar a {
+		box-sizing: border-box;
+		display: inline-block;
+		padding: 12px 16px;
+		margin: 0 2px;
+	}
+
+	#navbar-links {
+		height: 100%;
+		vertical-align: middle;
+
+		margin: auto 0;
+	}
+
+	#navbar-brand {
+		text-decoration: none;
+	}
+
+	.navbar-link {
+		text-decoration: none;
+		color: rgb(25, 25, 25);
+	}
+
+	.navbar-link:hover {
+		text-decoration: underline;
+		color: black;
+	}
+
+	#navbar-icon {
+		vertical-align: middle;
+
+		height: 2rem;
+		width: 2rem;
+	}
+</style>
