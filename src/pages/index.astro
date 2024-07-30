@@ -2,5 +2,113 @@
 import Page from "../layouts/Page.astro"
 ---
 <Page>
-	astro :D
+	<div id="header">
+		<div id="brand">
+			<div id="brand-main">
+				<img id="brand-icon" src="/assets/maize.png">
+				<span id="brand-name">Maize</span>
+			</div>
+			<span id="brand-tagline">Undoubtedly one of the programming languages of all time.</span>
+		</div>
+		<div id="header-description">
+			<span>This is some arbitrary text that exists.</span>
+			<span>Ideally it would contain information about the language.</span>
+		</div>
+	</div>
+	<div id="features">
+		<div class="feature">
+			<h3>slow</h3>
+			<p>
+				We guarantee your programs run slower than Python.
+			</p>
+		</div>
+		<div class="feature">
+			<h3>complicated</h3>
+			<p>
+				Maize syntax is impossible to read, let alone write.
+			</p>
+		</div>
+		<div class="feature">
+			<h3>inconvenient</h3>
+			<p>
+				It's impossible to run a Maize codebase on a different device.
+			</p>
+		</div>
+	</div>
+	<div>
+		astro :D
+	</div>
 </Page>
+
+<style>
+	#header {
+		margin-top: 15%;
+		margin-bottom: 15%;
+
+		width: 100%;
+
+		padding: 0;
+
+		display: flex;
+	}
+
+	#brand {
+		width: 50%;
+
+		display: inline-block;
+	}
+
+	#brand-main {
+		height: 4rem;
+
+		box-sizing: border-box;
+
+		display: flex;
+		padding-right: 9px;
+
+		margin-bottom: 0.25rem;
+	}
+
+	#brand-icon {
+		height: 100%;
+		margin-right: 0.25rem;
+	}
+
+	#brand-name {
+		font-size: 4rem;
+		margin: auto 0 auto 0;
+	}
+
+	#header-description {
+		vertical-align: top;
+		/* height: 4rem; */
+		width: 50%;
+
+		display: inline-block;
+	}
+</style>
+
+<style>
+	#features {
+		display: flex;
+		/* width: 100%; */
+
+		/* padding: 1rem; */
+
+		/* background: rgb(232, 244, 255); */
+
+		gap: 2rem;
+	}
+
+	.feature {
+		width: 100%;
+		padding: 0.5rem;
+
+		/* border: 2px solid goldenrod; */
+		/* border-radius: 2px; */
+	}
+
+	.feature h3 {
+		margin-top: 0.25rem;
+	}
+</style>
