@@ -2,15 +2,15 @@
 import Page from "../layouts/Page.astro"
 ---
 <Page>
-	<div id="header">
-		<div id="brand">
+	<div id="header" class="column-container">
+		<div class="column">
 			<div id="brand-main">
 				<img id="brand-icon" src="/assets/maize.png">
 				<span id="brand-name">Maize</span>
 			</div>
 			<span id="brand-tagline">Undoubtedly one of the programming languages of all time.</span>
 		</div>
-		<div id="header-description">
+		<div id="header-description" class="column">
 			<span>This is some arbitrary text that exists.</span>
 			<span>Ideally it would contain information about the language.</span>
 			<br>
@@ -19,20 +19,20 @@ import Page from "../layouts/Page.astro"
 			</div>
 		</div>
 	</div>
-	<div id="features">
-		<div class="feature">
+	<div id="features" class="column-container">
+		<div class="column">
 			<h3>Slow</h3>
 			<p>
 				We guarantee your programs run slower than Python.
 			</p>
 		</div>
-		<div class="feature">
+		<div class="column">
 			<h3>Complicated</h3>
 			<p>
 				Maize syntax is impossible to read, let alone write.
 			</p>
 		</div>
-		<div class="feature">
+		<div class="column">
 			<h3>Inconvenient</h3>
 			<p>
 				It's impossible to run a Maize codebase on a different device.
@@ -45,30 +45,26 @@ import Page from "../layouts/Page.astro"
 </Page>
 
 <style>
+	.column-container {
+		width: 100%;
+		display: flex;
+		gap: 2rem;
+	}
+
+	.column {
+		width: 100%;
+		padding: 0.5rem;
+	}
+
 	#header {
 		margin-top: 15%;
 		margin-bottom: 15%;
-
-		width: 100%;
-
-		padding: 0;
-
-		display: flex;
-	}
-
-	#brand {
-		width: 50%;
-
-		display: inline-block;
 	}
 
 	#brand-main {
 		height: 4rem;
 
-		box-sizing: border-box;
-
 		display: flex;
-		padding-right: 9px;
 
 		margin-bottom: 0.25rem;
 	}
@@ -80,31 +76,14 @@ import Page from "../layouts/Page.astro"
 
 	#brand-name {
 		font-size: 4rem;
-		margin: auto 0 auto 0;
+		margin: auto 0;
 	}
 
 	#header-description {
-		width: 50%;
-
-		display: inline-block;
-
 		margin: auto 0;
 	}
-</style>
-
-<style>
-	#features {
-		display: flex;
-
-		gap: 2rem;
-	}
-
-	.feature {
-		width: 100%;
-		padding: 0.5rem;
-	}
-
-	.feature h3 {
+	
+	#features h3 {
 		margin-top: 0.25rem;
 	}
 
@@ -120,17 +99,16 @@ import Page from "../layouts/Page.astro"
 		line-height: 1.25rem;
 		font-weight: 500;
 
-		
-		background-color: #e4eaf0;
 		border: 2px solid gray;
-		border-radius: 3px;
+		border-radius: 2px;
 		padding: 6px 16px;
+
+		background-color: #e4eaf0;
 		transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
 	}
 
 	#get-started:hover {
 		background-color: #d2d7df;
-		text-decoration: none;
 		transition-duration: 0.1s;
 	}
 </style>
