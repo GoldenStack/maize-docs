@@ -13,7 +13,7 @@ import Page from "../layouts/Page.astro"
 		<div id="header-description" class="column">
 			<b><span title="Not general-purpose">Specialized</span></b> programming language for writing <b><span title="All code should describe desired behaviour without specifying any extraneous details.">descriptive</span></b>, <b><span title="All code should be relevant to either the desired task or the legibility/usability of the program.">relevant</span></b>, and <b><span title="All code should look the same (so no hyper-specific operators) and follow the same syntactic rules.">consistent</span></b> code.
 			<br>
-			<div id="get-started-container">
+			<div class="text-center">
 				<button id="get-started" onclick="alert('hacked');">Get Started</button>
 			</div>
 		</div>
@@ -24,26 +24,42 @@ import Page from "../layouts/Page.astro"
 			<p>
 				Maize source code follows an incredibly simple syntactic rules—represented as a simple binary tree—without permitting excessive customization.	
 			</p>
+			<div class="text-center">
+				<a target="_blank" rel="noreferrer" href="/philosophy#simple" class="link">more</a>
+			</div>
 		</div>
 		<div class="column">
 			<h3>Portable</h3>
 			<p>
 				Compiling to simple formats like lambda calculus, Maize code can be run on any system. If a system doesn't have an interpreter, you can build one in a day.
 			</p>
+			<div class="text-center">
+				<a target="_blank" rel="noreferrer" href="/philosophy#portable" class="link">more</a>
+			</div>
 		</div>
 		<div class="column">
 			<h3>Composable</h3>
 			<p>
 				Maize forces you to write functions instead of programs, allowing the user to decide how to compose available functions themselves.
 			</p>
+			<div class="text-center">
+				<a target="_blank" rel="noreferrer" href="/philosophy#composable" class="link">more</a>
+			</div>
 		</div>
-	</div>
-	<div>
-		astro :D
 	</div>
 </Page>
 
 <style>
+	.link {
+		text-decoration: none;
+		color: rgb(25, 25, 25);
+	}
+
+	.link:hover {
+		text-decoration: underline;
+		color: black;
+	}
+
 	.column-container {
 		width: 100%;
 		display: flex;
@@ -86,7 +102,7 @@ import Page from "../layouts/Page.astro"
 		margin-top: 0.25rem;
 	}
 
-	#get-started-container {
+	.text-center {
 		text-align: center;
 	}
 
@@ -98,16 +114,15 @@ import Page from "../layouts/Page.astro"
 		line-height: 1.25rem;
 		font-weight: 500;
 
-		border: 2px solid gray;
-		border-radius: 2px;
+		border: 0;
 		padding: 6px 16px;
 
-		background-color: #e4eaf0;
+		background-color: gold;
 		transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
 	}
 
 	#get-started:hover {
-		background-color: #d2d7df;
+		background-color: rgb(230, 195, 0);
 		transition-duration: 0.1s;
 	}
 </style>
