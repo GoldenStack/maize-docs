@@ -1,6 +1,79 @@
 ---
+import { Code } from "astro:components"
 import Page from "../layouts/Page.astro"
 ---
 <Page>
-	astro :D
+	<div id="content">
+		<h2>The Maize Philosophy</h2>
+		<p>
+			Maize is a programming language primarily intended to demonstrate a few concepts related to programming language and program design that, at the time of writing, I have not noticed demonstrated in any other programming language.
+		</p>
+		<p>
+			Many features are taken from other languages, such as partial ordering-based operator precedence from <a target="_blank" rel="noreferrer" href="https://softwareengineering.stackexchange.com/questions/391263/what-is-the-logic-in-the-order-of-operator-precedence">Fortress</a> and <a target="_blank" rel="noreferrer" href="https://docs.swift.org/swift-book/documentation/the-swift-programming-language/declarations#Precedence-Group-Declaration">Swift</a>, indentation alignment rules from <a target="_blank" rel="noreferrer" href="https://en.wikibooks.org/wiki/Haskell/Indentation">Haskell</a>, and colon-prefixed blocks from Python. There are also a few features like <a target="_blank" rel="noreferrer" href="https://www.microsoft.com/en-us/research/uploads/prod/2020/01/CoDataInAction.pdf">codata</a> that were taken from papers, as well as some more general features like emergent generic types (via compile-time execution and first-class types) that were taken from no language in particular. I do not claim to have invented these specifically, but in the following explanation you will likely find an idea you haven't heard exactly before.
+		</p>
+		<p>
+			Maize attempts to promote composability, descriptivity, consistency, simplicity, and specialization, among other ideas.
+		</p>
+
+		<h2 id="composability">Composability</h2>
+		<p>
+			Maize does not support the concept of an application. Strictly separating what is a library and what is an application is terrible for code reusability (see <a target="_blank" rel="noreferrer" href="https://goldenstack.net/blog/doing_more_with_less">my article</a> on the topic), so writing Maize code simply involves tying intended functions together with code written the exact same language used to write the original functions themselves.
+		</p>
+		<p>
+			So how do you make use of Maize code if you can't write an application? You simply run a Maize function—which you may have written yourself—that performs all of the intended logic and returns whatever data you want to use. If you need a rendered GUI, you can provide an environment function (that is treated the same as a normal function) when calling your initial function. This sounds pretty abstract, so here's an example of how code might work.
+		</p>
+		<Code code={`main = "Hello, world!"`} lang="haskell" wrap/>
+		<p>
+			If you want to print a string, this is all of the necessary data for it: just the string itself.
+		</p>
+		<p>
+			You might notice that there's no print function called. This is intended, as it's already up to the user to do whatever they want with the string. A more common programming tactic of piping this to 'standard out' is essentially the same thing, but with another layer of indirection because now, instead of a named and typed string available for usage (that may be converted to bytes if desired), there is an unnamed and untyped standard output that is also available for the same arbitrary usage. Having a singular 'standard out' also arbitrarily limits the number of output channels running a function could have.
+		</p>
+		<p>
+			If you do add a print function, it reveals something additional about Maize's type system.
+		</p>
+		<Code code={`main = println "Hello, world!"`} lang="haskell" wrap/>
+		<p>
+			Even without imports of any sort, this is still a valid expression. <code>main</code> is simply a function that, when called, requires that a <code>println</code> function is defined that can be used on the string literal. This can be verified in the type of <code>main</code> and essentially monomorphized, and thus incurs no direct runtime penalty, but when used externally you can provide it a function that actually displays the output somewhere, like a terminal.
+		</p>
+		<p>
+			Removing the distinction between a function and an application allows for an incredible level of composability.
+		</p>
+		<h2>Descriptivity</h2>
+		<p>
+			Maize has been designed so that code written in Maize is an accurate description of expected behaviour.
+		</p>
+		<p>
+			Essentially, this means that code is fully declarative and omits platform-specific details like manual allocation, pointer management, etc., because a simple description of expected behaviour would not contain semantics that are required due to the platform. The choice to disallow manual memory management will likely slow down the language, but the goal of Maize is not to be the fastest language.
+		</p>
+		<h2>Consistency</h2>
+		<p>
+			Maize intends to be a very consistent language. Consistency here means both consistency within language logic and consistency between different codebases.
+		</p>
+		<p>
+			TODO.
+		</p>
+		<h2>Simplicity</h2>
+		<p>
+			TODO
+		</p>
+		<h2>Specialization</h2>
+		<p>
+			TODO
+		</p>
+	</div>
 </Page>
+
+<style>
+	#content {
+		max-width: 768px;
+
+		margin: 0 auto 0 auto;
+
+		padding-top: 5%;
+	}
+
+	h2 {
+		margin-top: 5%;
+	}
+</style>
